@@ -1,0 +1,17 @@
+.logo {
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    text-align: center;
+    padding: 1em;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5em;
+}
