@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+}
+
+.sidebar {
+    color: #fff;
+    height: 100vh;
+}
+
+.icon-theme {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
