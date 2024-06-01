@@ -1,10 +1,14 @@
-* {
-    margin: 0;
+.border-content {
+    border-top: 1px solid;
 }
-
 .sidebar {
     color: #fff;
+    overflow: auto;
     height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .icon-theme {

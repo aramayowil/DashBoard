@@ -1,13 +1,13 @@
 import { React, useState } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
 import { MenuFoldOutlined, MenuUnfoldOutlined, SunFilled, MoonFilled } from '@ant-design/icons'
-import { Button, Flex, Layout, theme } from 'antd'
+import { Button, ConfigProvider, Layout, theme } from 'antd'
 import './App.css'
 import MenuList from './components/MenuList'
 import LogoSideBar from './components/LogoSideBar'
 import MyRoutes from './routers/routes'
+import { FormProvider } from 'antd/es/form/context'
 
-const { Header, Content, Sider } = Layout
+const { Header, Content, Sider, Footer } = Layout
 
 function App() {
 
@@ -15,23 +15,32 @@ function App() {
   const {
     token: { colorBgContainer, borderRadiusLG }
   } = theme.useToken();
-
   return (
     <>
-      <Layout>
-        <Sider className='sidebar' trigger={null} collapsible collapsed={collapsed} theme='light'>
+      <Layout hasSider>
+
+        <Sider className='sidebar' theme='dark'
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+            top: 0,
+            bottom: 0,
+          }}
+        >
           <LogoSideBar />
           <MenuList />
         </Sider>
 
-        <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer, display: Flex, position: 'relative' }}>
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{ fontSize: '16px', width: 64, height: 64, }}
-            />
+        <Layout style={{ marginLeft: 200 }}>
+          <Header
+            style={{
+              padding: 0,
+              background: colorBgContainer,
+              borderBlockEnd: '1px solid #837f7f'
+            }}
+          >
             <Button
               type="text"
               icon={collapsed ? <SunFilled /> : <MoonFilled />}
@@ -41,17 +50,19 @@ function App() {
 
           <Content
             style={{
-              margin: '24px 16px',
+              margin: '0px 0px 0',
               padding: 24,
-              minHeight: 280,
+              overflow: 'initial',
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
           >
             <MyRoutes />
+
           </Content>
+
         </Layout>
-      </Layout>
+      </Layout >
     </>
   )
 }
