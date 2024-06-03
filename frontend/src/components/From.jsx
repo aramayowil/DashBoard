@@ -146,7 +146,7 @@ const FormProduct = () => {
         </Form.Item>
       </Space>
 
-      <Space direction="horizontal" size="small">
+      <Space direction="horizontal" size="middle">
         <Form.Item
           label="Precio Compra"
           name="precioCompra"
@@ -170,17 +170,18 @@ const FormProduct = () => {
             },
           ]}
         >
-          <InputNumber prefix="$" style={{ width: "100%" }} />
+          <Input prefix="$" style={{ width: "100%" }} />
         </Form.Item>
 
         <Form.Item label="Ganancia" name="ganancia">
-          <InputNumber prefix="$" disabled style={{ width: "100%" }} />
+          <Input prefix="$" disabled style={{ width: "100%" }} />
         </Form.Item>
       </Space>
 
       <Form.Item
         label="Talle"
         name="talle"
+        hasFeedback
         rules={[
           {
             required: true,
@@ -189,13 +190,14 @@ const FormProduct = () => {
         ]}
         style={{ width: 150 }}
       >
-        <InputNumber style={{ width: "100%" }} />
+        <Input style={{ width: "100%" }} />
       </Form.Item>
 
       <Space direction="horizontal" size="middle">
         <Form.Item
           label="Stock"
           name="stock"
+          hasFeedback
           rules={[
             {
               required: true,
@@ -203,7 +205,7 @@ const FormProduct = () => {
             },
           ]}
         >
-          <InputNumber style={{ width: "100%" }} />
+          <Input style={{ width: "100%" }} />
         </Form.Item>
 
         <Form.Item
