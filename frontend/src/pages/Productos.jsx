@@ -63,12 +63,22 @@ function Productos() {
                     <Modal
                         title="Agregar Producto"
                         open={open}
+                        centered
                         onOk={handleOk}
                         confirmLoading={confirmLoading}
                         onCancel={handleCancel}
+                        footer={[
+                            <Button key="cancel" onClick={handleCancel}>
+                                Cancelar
+                            </Button>,
+                            <Button key="hanbleOk" type='primary' onClick={handleOk}>
+                                Guardar
+                            </Button>
+                            
+                        ]}
                     >
-                        <Space>
-                            <FormProduct />
+                        <Space style={{padding: "8px"}}>
+                            <FormProduct/> 
                         </Space>
                     </Modal>
                 </div>
