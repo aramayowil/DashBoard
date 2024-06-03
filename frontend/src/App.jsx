@@ -1,70 +1,81 @@
 import { React, useState } from 'react'
-import { MenuFoldOutlined, MenuUnfoldOutlined, SunFilled, MoonFilled } from '@ant-design/icons'
-import { Button, ConfigProvider, Layout, theme } from 'antd'
+import { SunFilled, MoonFilled } from '@ant-design/icons'
+import { Button, Layout, theme,Breadcrumb} from 'antd'
 import './App.css'
 import MenuList from './components/MenuList'
 import LogoSideBar from './components/LogoSideBar'
 import MyRoutes from './routers/routes'
-import { FormProvider } from 'antd/es/form/context'
 
-const { Header, Content, Sider, Footer } = Layout
 
-function App() {
+const { Header, Content, Footer, Sider } = Layout;
 
+
+const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
-    token: { colorBgContainer, borderRadiusLG }
+    token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  return (
-    <>
-      <Layout hasSider>
 
-        <Sider className='sidebar' theme='dark'
-          style={{
-            overflow: 'auto',
-            height: '100vh',
-            position: 'fixed',
-            left: 0,
-            top: 0,
-            bottom: 0,
-          }}
-        >
+  return (
+    <Layout
+      style={{
+        minHeight: '100vh',
+      }}
+    >
+      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
           <LogoSideBar />
           <MenuList />
-        </Sider>
+      </Sider>
 
-        <Layout style={{ marginLeft: 200 }}>
-          <Header
+      <Layout>
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+          }}
+        >
+          <Button
+            type="text"
+            icon={collapsed ? <SunFilled /> : <MoonFilled />}
+            className='icon-theme'
+            />
+        </Header>
+
+        <Content
+          style={{
+            // margin: '0 16px',
+            margin: '0 8px',
+          }}
+        >
+          <Breadcrumb
             style={{
-              padding: 0,
-              background: colorBgContainer,
-              borderBlockEnd: '1px solid #837f7f'
+              margin: '16px 0',
             }}
           >
-            <Button
-              type="text"
-              icon={collapsed ? <SunFilled /> : <MoonFilled />}
-              className='icon-theme'
-            />
-          </Header>
-
-          <Content
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
             style={{
-              margin: '0px 0px 0',
               padding: 24,
-              overflow: 'initial',
+              minHeight: 360,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
           >
             <MyRoutes />
-
-          </Content>
-
-        </Layout>
-      </Layout >
-    </>
-  )
-}
-
-export default App
+          </div>
+        </Content>
+        
+        <Footer
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        </Footer>
+      </Layout>
+    </Layout>
+  );
+};
+export default App;
