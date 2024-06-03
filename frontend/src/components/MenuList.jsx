@@ -105,7 +105,7 @@ function MenuList() {
     return (
         <>
             <Menu
-                theme="light"
+                theme="dark"
                 mode="inline"
                 defaultSelectedKeys={['sale']}
                 items={items}
