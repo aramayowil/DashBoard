@@ -33,9 +33,9 @@
     border-radius: 50%;
 }
 
-/* .ant-drawer-body{
-    padding: 0 !important;
-} */
+.ant-drawer-body{
+    padding: 16px 0 !important;
+}
 
 .drawer{
     padding: 0 !important;

@@ -1,40 +1,30 @@
-import React, { useState } from "react";
-import { MenuOutlined } from "@ant-design/icons";
-import {
-  Layout,
-  theme,
-  Button,
-  Row,
-  Col,
-  Space,
-  Drawer,
-  Grid,
-  Tag,
-} from "antd";
-import MenuList from "./components/MenuList";
-import LogoSideBar from "./components/LogoSideBar";
-import MyRoutes from "./routers/routes";
-import AvatarProfile from "./components/AvatarProfile";
+import React, { useState } from "react"
+import { MenuOutlined } from "@ant-design/icons"
+import { Layout, theme, Button, Row, Col, Space, Drawer, Grid } from "antd"
+import MenuList from "./components/MenuList"
+import LogoSideBar from "./components/LogoSideBar"
+import MyRoutes from "./routers/routes"
+import AvatarProfile from "./components/AvatarProfile"
 
-import "./App.css";
+import "./App.css"
 
-const { Header, Content, Sider } = Layout;
-const { useBreakpoint } = Grid;
+const { Header, Content, Sider } = Layout
+const { useBreakpoint } = Grid
 
 const App = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const screens = useBreakpoint();
+  const [collapsed, setCollapsed] = useState(false)
+  const screens = useBreakpoint()
   const {
     token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  } = theme.useToken()
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
   const showDrawer = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
   const onClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
   return (
     <Layout
       style={{
@@ -46,34 +36,33 @@ const App = () => {
           padding: "0px 16px",
         }}
       >
-        <Row justify="space-between">
+        <Row justify='space-between'>
           <Col>
             <Space>
               <Button
-                type="default"
+                type='default'
                 onClick={showDrawer}
                 icon={<MenuOutlined style={{ fontSize: "20px" }} />}
-                className="btn-collapse-menu"
+                className='btn-collapse-menu'
               />
 
               <Drawer
                 open={open}
                 onClose={onClose}
                 width={300}
-                placement="left"
+                placement='left'
                 closable={false}
-                className="drawer"
+                className='drawer'
                 style={{
                   background: "rgb(0, 21, 41)",
                 }}
-                bodyStyle={{ padding: "16px 0" }}
               >
-                <Space size="small">
+                <Space size='small'>
                   <Button
-                    type="default"
+                    type='default'
                     onClick={onClose}
                     icon={<MenuOutlined style={{ fontSize: "20px" }} />}
-                    className="btn-collapse-menu"
+                    className='btn-collapse-menu'
                     style={{ marginLeft: "16px" }}
                   />
                   <LogoSideBar />
@@ -100,9 +89,6 @@ const App = () => {
             background: "rgb(0, 21, 41)",
             overflow: "auto",
             display: screens.sm === true ? "block" : "none",
-            // position: "fixed",
-            // height: "100vh",
-            //background: colorBgContainer,
           }}
         >
           <MenuList collapsed={true} />
@@ -128,6 +114,6 @@ const App = () => {
         </Layout>
       </Layout>
     </Layout>
-  );
-};
-export default App;
+  )
+}
+export default App

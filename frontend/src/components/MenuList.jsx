@@ -43,10 +43,7 @@ function MenuList({ collapsed }) {
     {
       key: "sale",
       icon: (
-        <FaShoppingCart
-          className="icon-sidebar-collapsed"
-          style={{ fontSize: "18px" }}
-        />
+        <FaShoppingCart className='icon-sidebar-collapsed' style={{ fontSize: "18px" }} />
       ),
       label: "Ventas",
     },
@@ -113,10 +110,10 @@ function MenuList({ collapsed }) {
   return (
     <>
       <Menu
-        theme="dark"
-        mode="inline"
+        theme='dark'
+        mode='inline'
         defaultSelectedKeys={["sale"]}
-        className="menuList"
+        className='menuList'
         items={items}
         onClick={({ key }) => {
           navigate("/" + key);
