@@ -1,4 +1,3 @@
-
 import { Space, Table, Input, Button, Divider, Tag, Flex, Pagination, Modal } from 'antd';
 import { PlusOutlined, EditOutlined, InboxOutlined, DeleteOutlined } from '@ant-design/icons';
 import { IoFilterSharp } from "react-icons/io5";
@@ -7,6 +6,7 @@ import { Products } from '../../data';
 import './styles/Producto.css'
 import { useState } from 'react';
 import FormProduct from '../components/From';
+
 
 const data = Products;
 
@@ -78,7 +78,7 @@ function Productos() {
                         ]}
                     >
                         <Space style={{padding: "8px"}}>
-                            <FormProduct/> 
+                            <FormProduct/>
                         </Space>
                     </Modal>
                 </div>

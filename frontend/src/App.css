@@ -16,3 +16,27 @@
     top: 15px;
     right: 15px;
 }
+
+
+.btn-collapse-menu{
+    width: 40px !important;
+    height: 40px !important;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-collapse-menu:hover{
+    color: #fff !important;
+    background-color: rgb(52, 52, 52, .6) !important;
+    border: none;
+    border-radius: 50%;
+}
+
+/* .ant-drawer-body{
+    padding: 0 !important;
+} */
+
+.drawer{
+    padding: 0 !important;
+}

@@ -1,79 +1,131 @@
-import { React, useState } from 'react'
-import { SunFilled, MoonFilled } from '@ant-design/icons'
-import { Button, Layout, theme,Breadcrumb} from 'antd'
-import './App.css'
-import MenuList from './components/MenuList'
-import LogoSideBar from './components/LogoSideBar'
-import MyRoutes from './routers/routes'
+import React, { useState } from "react";
+import { MenuOutlined } from "@ant-design/icons";
+import {
+  Layout,
+  theme,
+  Button,
+  Row,
+  Col,
+  Space,
+  Drawer,
+  Grid,
+  Tag,
+} from "antd";
+import MenuList from "./components/MenuList";
+import LogoSideBar from "./components/LogoSideBar";
+import MyRoutes from "./routers/routes";
+import AvatarProfile from "./components/AvatarProfile";
 
+import "./App.css";
 
-const { Header, Content, Footer, Sider } = Layout;
-
+const { Header, Content, Sider } = Layout;
+const { useBreakpoint } = Grid;
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const screens = useBreakpoint();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
   return (
     <Layout
       style={{
-        minHeight: '100vh',
+        height: "100vh",
       }}
     >
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-          <LogoSideBar />
-          <MenuList />
-      </Sider>
+      <Header
+        style={{
+          padding: "0px 16px",
+        }}
+      >
+        <Row justify="space-between">
+          <Col>
+            <Space>
+              <Button
+                type="default"
+                onClick={showDrawer}
+                icon={<MenuOutlined style={{ fontSize: "20px" }} />}
+                className="btn-collapse-menu"
+              />
+
+              <Drawer
+                open={open}
+                onClose={onClose}
+                width={300}
+                placement="left"
+                closable={false}
+                className="drawer"
+                style={{
+                  background: "rgb(0, 21, 41)",
+                }}
+                bodyStyle={{ padding: "16px 0" }}
+              >
+                <Space size="small">
+                  <Button
+                    type="default"
+                    onClick={onClose}
+                    icon={<MenuOutlined style={{ fontSize: "20px" }} />}
+                    className="btn-collapse-menu"
+                    style={{ marginLeft: "16px" }}
+                  />
+                  <LogoSideBar />
+                </Space>
+
+                <MenuList />
+              </Drawer>
+
+              <LogoSideBar />
+            </Space>
+          </Col>
+
+          <Col>
+            <AvatarProfile />
+          </Col>
+        </Row>
+      </Header>
 
       <Layout>
-        <Header
+        <Sider
+          collapsed={true}
+          width={230}
           style={{
-            padding: 0,
-            background: colorBgContainer,
+            background: "rgb(0, 21, 41)",
+            overflow: "auto",
+            display: screens.sm === true ? "block" : "none",
+            // position: "fixed",
+            // height: "100vh",
+            //background: colorBgContainer,
           }}
         >
-          <Button
-            type="text"
-            icon={collapsed ? <SunFilled /> : <MoonFilled />}
-            className='icon-theme'
-            />
-        </Header>
+          <MenuList collapsed={true} />
+        </Sider>
 
-        <Content
+        <Layout
           style={{
-            // margin: '0 16px',
-            margin: '0 8px',
+            padding: "0 0px 0px",
           }}
         >
-          <Breadcrumb
+          <Content
             style={{
-              margin: '16px 0',
-            }}
-          >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            style={{
+              overflow: "initial",
               padding: 24,
-              minHeight: 360,
+              margin: 0,
+              minHeight: 280,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
           >
             <MyRoutes />
-          </div>
-        </Content>
-        
-        <Footer
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+          </Content>
+        </Layout>
       </Layout>
     </Layout>
   );
