@@ -1,16 +1,22 @@
-import React from 'react'
-import Logo from '../assets/react.svg'
-import './styles/LogoSideBar.css'
+import React from "react";
+import "./styles/LogoSideBar.css";
 
 function LogoSideBar() {
-    return (
-
-        <div className="logo">
-            <div className='logo-icon'>
-                <img src={Logo} alt="logo-react" />
-            </div>
-        </div>
-    )
+  return (
+    <div className="logo-icon">
+      <img
+        src="../../public/img/logoEmmaThemeDark.png"
+        alt="logo-react"
+        style={{
+          width: "145px",
+          height: "auto",
+          display: "block",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      />
+    </div>
+  );
 }
 
-export default LogoSideBar
+export default LogoSideBar;
