@@ -1,10 +1,17 @@
 import React from "react"
-import { Table, Tag, Space, Button, Row, Col } from "antd"
-import { EditOutlined, InboxOutlined, DeleteOutlined } from "@ant-design/icons"
+import { Table, Tag, Space, Button, Row, Col, Flex, Input } from "antd"
+import {
+  DeleteOutlined,
+  PrinterOutlined,
+  FolderOpenOutlined,
+  SearchOutlined,
+} from "@ant-design/icons"
+import { FiEdit } from "react-icons/fi"
+import { LuFolderDown } from "react-icons/lu"
+import { GoTrash } from "react-icons/go"
 import { Products } from "../../data"
 import "./styles/TablaProductos.css"
-import Search from "antd/es/transfer/search"
-import MenuTable from "./MenuTable"
+import MenuTable from "./TabsTable"
 
 const data = Products
 
@@ -27,6 +34,14 @@ data.forEach((element) => {
 const columns = [
   Table.SELECTION_COLUMN,
   {
+    title: "Codigo",
+    dataIndex: "key",
+    key: "key",
+    width: 90,
+    fixed: true,
+    sorter: (a, b) => a.age - b.age,
+  },
+  {
     title: "Producto",
     dataIndex: "producto",
     key: "name",
@@ -37,6 +52,7 @@ const columns = [
     title: "Talle",
     dataIndex: "talle",
     key: "talle",
+    width: 80,
     sorter: (a, b) => a.age - b.age,
   },
   {
@@ -56,8 +72,15 @@ const columns = [
     title: "Stock",
     dataIndex: "stock",
     key: "stock",
-    //width: 80,
+    width: 90,
     //defaultSortOrder: "descend",
+    sorter: (a, b) => a.age - b.age,
+  },
+  {
+    title: "Vendidas",
+    key: "precio",
+    dataIndex: "vendidos",
+    width: 110,
     sorter: (a, b) => a.age - b.age,
   },
   {
@@ -79,24 +102,17 @@ const columns = [
     sorter: (a, b) => a.age - b.age,
   },
   {
-    title: "Vendida/s",
-    key: "precio",
-    dataIndex: "vendidos",
-    sorter: (a, b) => a.age - b.age,
-  },
-  {
     title: "Accciones",
     key: "actions",
-    sorter: (a, b) => a.age - b.age,
     render: () => (
       <Space size='small'>
-        <Button icon={<EditOutlined />} />
-        <Button icon={<InboxOutlined />} />
-        <Button icon={<DeleteOutlined />} />
+        <Button type='text' icon={<FiEdit size={17} />} />
+        <Button type='text' icon={<LuFolderDown size={17} />} />
+        <Button type='text' icon={<GoTrash size={19} />} />
       </Space>
     ),
     fixed: "right",
-    //width: 150,
+    width: 150,
   },
 ]
 
@@ -109,17 +125,35 @@ function TablaProductos() {
             <MenuTable />
           </Col>
         </Row>
-        <Row justify='space-between' style={{ margin: "0 20px" }}>
+        <Row justify='space-between' style={{ marginBottom: 24 }}>
           <Col>
-            <Space>
-              <Button>Archivar</Button>
-              <Button>Imprimir</Button>
-              <Button>Borrar</Button>
-            </Space>
+            <Flex gap='small' wrap>
+              <Button shape='round' icon={<FolderOpenOutlined />}>
+                Archivar
+              </Button>
+              <Button shape='round' icon={<PrinterOutlined />}>
+                Imprimir
+              </Button>
+              <Button shape='round' icon={<DeleteOutlined />}>
+                Borrar
+              </Button>
+            </Flex>
           </Col>
           <Col>
             <Space>
-              <Button>Buscar</Button>
+              <Input
+                size='middle'
+                allowClear
+                //width={280}
+                prefix={
+                  <SearchOutlined
+                    style={{
+                      color: "rgba(0,0,0,.60)",
+                    }}
+                  />
+                }
+                placeholder='Buscar producto o categoria'
+              />
             </Space>
           </Col>
         </Row>
@@ -130,7 +164,13 @@ function TablaProductos() {
         size='large'
         columns={columns}
         dataSource={data}
-        pagination={{ pageSize: 5 }}
+        showHeader
+        pagination={{
+          defaultPageSize: 5,
+          showSizeChanger: true,
+          pageSizeOptions: [5, 10, 20, 50],
+          showTotal: (total, range) => `${range[0]}-${range[1]} de ${total} productos`,
+        }}
         scroll={{ x: 1300 }}
         rowSelection={{}}
       />

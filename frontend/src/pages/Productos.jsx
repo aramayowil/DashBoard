@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Space, Input, Button, Divider, Modal, Row, Col } from "antd"
+import { Space, Input, Button, Divider, Modal, Row, Col, ConfigProvider } from "antd"
 import { PlusOutlined } from "@ant-design/icons"
 import { IoFilterSharp } from "react-icons/io5"
 import FormProduct from "../components/From"
@@ -36,6 +36,7 @@ function Productos() {
               type='primary'
               icon={<PlusOutlined />}
               iconPosition='start'
+              size='middle'
               onClick={showModal}
             >
               Añadir
@@ -65,11 +66,17 @@ function Productos() {
         </Row>
       </div>
 
-      <Divider orientation='left' plain>
-        Productos
-      </Divider>
-
-      <TablaProductos />
+      <ConfigProvider
+        theme={{
+          components: {
+            Table: {
+              headerBg: "#EDF3F9",
+            },
+          },
+        }}
+      >
+        <TablaProductos />
+      </ConfigProvider>
     </>
   )
 }

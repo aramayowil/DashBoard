@@ -82,7 +82,7 @@ const App = () => {
       </Header>
 
       <Layout>
-        <Sider
+        {/* <Sider
           collapsed={true}
           width={230}
           style={{
@@ -92,7 +92,7 @@ const App = () => {
           }}
         >
           <MenuList collapsed={true} />
-        </Sider>
+        </Sider> */}
 
         <Layout
           style={{
